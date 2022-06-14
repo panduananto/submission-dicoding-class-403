@@ -4,7 +4,7 @@ export default class SearchInput extends Component {
 	render() {
 		return (
 			<form className="ml-auto block w-96">
-				<label htmlFor="search" className="sr-only mb-2 text-sm font-medium text-white ">
+				<label htmlFor="search" className="sr-only mb-2 text-sm font-medium text-slate-700">
 					Search
 				</label>
 				<div className="relative">
@@ -29,7 +29,7 @@ export default class SearchInput extends Component {
 						id="search"
 						autoComplete="off"
 						placeholder="Cari catatanmu di sini..."
-						className="block w-full rounded-lg border border-slate-300 bg-gray-50 p-3 pl-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-lime-500 focus:outline-none focus:ring-lime-500"
+						className="block w-full rounded-lg border border-slate-300 bg-gray-50 p-3 pl-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-700 focus:outline-none focus:ring-blue-700"
 					/>
 				</div>
 			</form>

@@ -11,7 +11,7 @@ export default class NavBar extends Component {
 						<span>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								class="h-10 w-10 text-lime-500"
+								class="h-10 w-10 text-blue-700"
 								viewBox="0 0 20 20"
 								fill="currentColor"
 							>
