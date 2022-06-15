@@ -30,7 +30,7 @@ export default class NoteApp extends Component {
 
 	render() {
 		return (
-			<div className="mx-auto max-w-screen-lg py-12">
+			<div className="mx-auto max-w-screen-xl py-12 px-6">
 				<NoteForm addNote={this.onAddNoteHandler}></NoteForm>
 			</div>
 		);
