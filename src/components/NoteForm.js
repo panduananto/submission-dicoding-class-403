@@ -1,17 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, createRef, Fragment } from 'react';
 
 export default class NoteForm extends Component {
 	constructor(props) {
 		super(props);
 
+		this.formRef = createRef();
+
 		this.state = {
 			title: '',
 			content: '',
+			titleFieldVisible: false,
 		};
 
 		this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
 		this.onContentChangeHandler = this.onContentChangeHandler.bind(this);
 		this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
+		this.onShowTitleField = this.onShowTitleField.bind(this);
+		this.onHideTitleField = this.onHideTitleField.bind(this);
+		this.onClickOutsideForm = this.onClickOutsideForm.bind(this);
+	}
+
+	componentDidMount() {
+		document.addEventListener('mousedown', this.onClickOutsideForm);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('mousedown', this.onClickOutsideForm);
 	}
 
 	onTitleChangeHandler(event) {
@@ -37,23 +51,51 @@ export default class NoteForm extends Component {
 		this.props.addNote(this.state);
 	}
 
+	onClickOutsideForm(event) {
+		if (this.formRef && !this.formRef.current.contains(event.target)) {
+			this.onHideTitleField();
+		}
+	}
+
+	onShowTitleField() {
+		this.setState((prevState) => {
+			return {
+				...prevState,
+				titleFieldVisible: true,
+			};
+		});
+	}
+
+	onHideTitleField() {
+		this.setState((prevState) => {
+			return {
+				...prevState,
+				titleFieldVisible: false,
+			};
+		});
+	}
+
 	render() {
 		return (
-			<form onSubmit={this.onSubmitEventHandler}>
+			<form ref={this.formRef} onSubmit={this.onSubmitEventHandler}>
 				<div className="w-[600px] overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm">
 					<div className="p-5">
-						<label htmlFor="title" className="sr-only mb-2 text-sm font-medium text-slate-700">
-							Judul Catatan
-						</label>
-						<input
-							type="text"
-							id="title"
-							autoComplete="off"
-							placeholder="Judul catatan"
-							value={this.state.title}
-							onChange={this.onTitleChangeHandler}
-							className="mb-2 block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-600 focus:border-0 focus:outline-none focus:ring-0"
-						/>
+						{this.state.titleFieldVisible && (
+							<Fragment>
+								<label htmlFor="title" className="sr-only mb-2 text-sm font-medium text-slate-700">
+									Judul Catatan
+								</label>
+								<input
+									type="text"
+									id="title"
+									autoComplete="off"
+									placeholder="Judul catatan"
+									value={this.state.title}
+									onChange={this.onTitleChangeHandler}
+									className="mb-2 block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-600 focus:border-0 focus:outline-none focus:ring-0"
+								/>
+							</Fragment>
+						)}
 						<label htmlFor="content" className="sr-only mb-2 text-sm font-medium text-slate-700">
 							Catatan
 						</label>
@@ -61,10 +103,11 @@ export default class NoteForm extends Component {
 							name="content"
 							id="content"
 							cols="20"
-							rows="4"
+							rows="3"
 							placeholder="Tulis catatanmu di sini..."
 							value={this.state.content}
 							onChange={this.onContentChangeHandler}
+							onFocus={this.onShowTitleField}
 							className="block w-full resize-none border-0 p-0 text-slate-900 outline-none scrollbar-hide placeholder:font-medium placeholder:text-slate-600 focus:border-0 focus:outline-none focus:ring-0"
 						></textarea>
 					</div>
