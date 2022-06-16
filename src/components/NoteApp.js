@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import NoteForm from './NoteForm';
+import NoteList from './NoteList';
 
 export default class NoteApp extends Component {
 	constructor(props) {
@@ -30,9 +31,12 @@ export default class NoteApp extends Component {
 
 	render() {
 		return (
-			<div className="mx-auto max-w-screen-xl py-12 px-6">
-				<NoteForm addNote={this.onAddNoteHandler}></NoteForm>
-			</div>
+			<main>
+				<div className="mx-auto max-w-screen-xl space-y-12 py-12 px-6">
+					<NoteForm addNote={this.onAddNoteHandler}></NoteForm>
+					<NoteList notes={this.state.notes}></NoteList>
+				</div>
+			</main>
 		);
 	}
 }

@@ -49,6 +49,11 @@ export default class NoteForm extends Component {
 	onSubmitEventHandler(event) {
 		event.preventDefault();
 		this.props.addNote(this.state);
+		this.setState({
+			title: '',
+			content: '',
+			titleFieldVisible: false,
+		});
 	}
 
 	onClickOutsideForm(event) {
@@ -77,7 +82,7 @@ export default class NoteForm extends Component {
 
 	render() {
 		return (
-			<form ref={this.formRef} onSubmit={this.onSubmitEventHandler}>
+			<form ref={this.formRef} onSubmit={this.onSubmitEventHandler} className="flex items-center justify-center">
 				<div className="w-[600px] overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm">
 					<div className="p-5">
 						{this.state.titleFieldVisible && (
@@ -92,7 +97,7 @@ export default class NoteForm extends Component {
 									placeholder="Judul catatan"
 									value={this.state.title}
 									onChange={this.onTitleChangeHandler}
-									className="mb-2 block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-600 focus:border-0 focus:outline-none focus:ring-0"
+									className="mb-2 block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
 								/>
 							</Fragment>
 						)}
@@ -108,7 +113,7 @@ export default class NoteForm extends Component {
 							value={this.state.content}
 							onChange={this.onContentChangeHandler}
 							onFocus={this.onShowTitleField}
-							className="block w-full resize-none border-0 p-0 text-slate-900 outline-none scrollbar-hide placeholder:font-medium placeholder:text-slate-600 focus:border-0 focus:outline-none focus:ring-0"
+							className="block w-full resize-none border-0 p-0 text-slate-900 outline-none scrollbar-hide placeholder:font-medium placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
 						></textarea>
 					</div>
 					<div className="bg-gray-50 px-5 py-3 text-right">
