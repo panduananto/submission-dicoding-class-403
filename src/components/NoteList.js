@@ -1,19 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import NoteItem from './NoteItem';
+import Tabs from './Tabs';
 
 export default class NoteList extends Component {
 	render() {
 		return (
-			<div className="grid w-full grid-cols-12 gap-6">
-				{this.props.notes.length !== 0 ? (
-					this.props.notes.map((note) => <NoteItem key={note.id} note={note}></NoteItem>)
-				) : (
-					<div className="col-span-6 col-start-4 rounded-lg border border-slate-300 p-3 text-center shadow-sm">
-						<p>Belum ada catatan di sini</p>
-					</div>
-				)}
-			</div>
+			<Fragment>
+				<Tabs>
+					{Object.keys(this.props.notes).map((key) => (
+						<div key={key} data-label={key} className="grid w-full grid-cols-12 gap-4">
+							{this.props.notes[key].map((note) => (
+								<NoteItem key={note.id} note={note}></NoteItem>
+							))}
+						</div>
+					))}
+				</Tabs>
+			</Fragment>
 		);
 	}
 }

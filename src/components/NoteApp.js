@@ -8,7 +8,10 @@ export default class NoteApp extends Component {
 		super(props);
 
 		this.state = {
-			notes: [],
+			notes: {
+				catatan: [],
+				arsip: [],
+			},
 		};
 
 		this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
@@ -17,14 +20,17 @@ export default class NoteApp extends Component {
 	onAddNoteHandler({ title, content }) {
 		this.setState((prevState) => {
 			return {
-				notes: [
+				notes: {
 					...prevState.notes,
-					{
-						id: +new Date(),
-						title,
-						content,
-					},
-				],
+					catatan: [
+						...prevState.notes.catatan,
+						{
+							id: +new Date(),
+							title,
+							content,
+						},
+					],
+				},
 			};
 		});
 	}
@@ -32,7 +38,7 @@ export default class NoteApp extends Component {
 	render() {
 		return (
 			<main>
-				<div className="mx-auto max-w-screen-xl space-y-12 py-12 px-6">
+				<div className="mx-auto flex max-w-screen-xl flex-col items-center justify-center space-y-12 py-12 px-6">
 					<NoteForm addNote={this.onAddNoteHandler}></NoteForm>
 					<NoteList notes={this.state.notes}></NoteList>
 				</div>
