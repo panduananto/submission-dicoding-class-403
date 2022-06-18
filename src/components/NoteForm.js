@@ -117,7 +117,7 @@ export default class NoteForm extends Component {
 						></textarea>
 					</div>
 					<div className="bg-gray-50 px-5 py-3 text-right">
-						<button className="inline-flex justify-center rounded-lg bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2">
+						<button className="inline-flex justify-center rounded-lg bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2">
 							Catat
 						</button>
 					</div>
