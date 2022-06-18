@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import TabsButton from './TabsButton';
+
 export default class Tabs extends Component {
 	constructor(props) {
 		super(props);
@@ -23,16 +25,11 @@ export default class Tabs extends Component {
 				<ul className="inline-flex space-x-4">
 					{this.props.children.map((tab) => (
 						<li key={tab.props['data-label']}>
-							<span
-								onClick={() => this.onClickActiveTab(tab.props['data-label'])}
-								className={`${
-									tab.props['data-label'] === this.state.activeTab
-										? 'border-b-2 border-blue-700 text-blue-700'
-										: 'hover:text-blue-700'
-								} cursor-pointer px-4 py-2 text-sm font-semibold capitalize`}
-							>
-								{tab.props['data-label']}
-							</span>
+							<TabsButton
+								label={tab.props['data-label']}
+								activeTab={this.state.activeTab}
+								onClickActiveTab={this.onClickActiveTab}
+							></TabsButton>
 						</li>
 					))}
 				</ul>
