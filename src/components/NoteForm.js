@@ -48,7 +48,10 @@ export default class NoteForm extends Component {
 
 	onSubmitEventHandler(event) {
 		event.preventDefault();
-		this.props.addNote(this.state);
+
+		const { title, content } = this.state;
+		this.props.addNote({ title, content });
+
 		this.setState({
 			title: '',
 			content: '',

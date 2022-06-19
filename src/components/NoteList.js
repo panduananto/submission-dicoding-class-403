@@ -11,7 +11,12 @@ export default class NoteList extends Component {
 					{Object.keys(this.props.notes).map((key) => (
 						<div key={key} data-label={key} className="grid w-full grid-cols-12 gap-4">
 							{this.props.notes[key].map((note) => (
-								<NoteItem key={note.id} note={note}></NoteItem>
+								<NoteItem
+									key={note.id}
+									note={note}
+									label={key}
+									moveNoteToAnotherCollection={this.props.moveNoteToAnotherCollection}
+								></NoteItem>
 							))}
 						</div>
 					))}

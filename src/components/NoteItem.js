@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import ReactModal from 'react-modal';
-import { MdArchive, MdDelete, MdOutlineModeEdit } from 'react-icons/md';
+import { MdArchive, MdUnarchive, MdDelete, MdOutlineModeEdit } from 'react-icons/md';
+import { IconContext } from 'react-icons';
 
 export default class NoteItem extends Component {
 	constructor(props) {
@@ -86,14 +87,25 @@ export default class NoteItem extends Component {
 							className="block w-full resize-none border-0 p-0 text-slate-900 outline-none scrollbar-hide placeholder:font-medium placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
 						></textarea>
 						<div className="mt-8 flex justify-between">
-							<div className="inline-flex gap-2">
-								<button className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200">
-									<MdArchive className="h-5 w-5 text-slate-500 transition-colors duration-200 ease-in-out group-hover:text-slate-900"></MdArchive>
-								</button>
-								<button className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200">
-									<MdDelete className="h-5 w-5 text-slate-500 transition-colors duration-200 ease-in-out group-hover:text-slate-900"></MdDelete>
-								</button>
-							</div>
+							<IconContext.Provider
+								value={{
+									className:
+										'h-5 w-5 text-slate-500 transition-colors duration-200 ease-in-out group-hover:text-slate-900',
+								}}
+							>
+								<div className="inline-flex gap-2">
+									<button
+										type="button"
+										onClick={() => this.props.moveNoteToAnotherCollection(this.props.note.id, 'catatan', 'arsip')}
+										className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
+									>
+										{this.props.label === 'catatan' ? <MdArchive></MdArchive> : <MdUnarchive></MdUnarchive>}
+									</button>
+									<button className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200">
+										<MdDelete></MdDelete>
+									</button>
+								</div>
+							</IconContext.Provider>
 							<button className="inline-flex items-center rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200">
 								Done
 							</button>
