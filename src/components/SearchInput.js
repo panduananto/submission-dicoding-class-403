@@ -18,6 +18,8 @@ export default class SearchInput extends Component {
 						id="search"
 						autoComplete="off"
 						placeholder="Cari catatanmu di sini..."
+						value={this.props.searchTerm}
+						onChange={this.props.onSearchTermChangeHandler}
 						className="block w-full rounded-lg border border-slate-300 bg-gray-50 p-3 pl-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-700 focus:outline-none focus:ring-blue-700"
 					/>
 				</div>

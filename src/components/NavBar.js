@@ -24,7 +24,10 @@ export default class NavBar extends Component {
 						</span>
 						<span className="font-rubik text-xl font-medium text-slate-900">Notenote</span>
 					</div>
-					<SearchInput></SearchInput>
+					<SearchInput
+						searchTerm={this.props.searchTerm}
+						onSearchTermChangeHandler={this.props.onSearchTermChangeHandler}
+					></SearchInput>
 				</div>
 			</nav>
 		);

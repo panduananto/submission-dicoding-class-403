@@ -109,6 +109,7 @@ export default class NoteApp extends Component {
 					<NoteForm addNote={this.onAddNoteHandler}></NoteForm>
 					<NoteList
 						notes={this.state.notes}
+						searchTerm={this.props.searchTerm}
 						moveNoteToAnotherCollection={this.onMovingNoteToAnotherCollection}
 						removeNoteFromCollection={this.onRemoveNoteFromCollection}
 						updateNote={this.onUpdateNoteHandler}
