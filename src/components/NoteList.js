@@ -16,6 +16,7 @@ export default class NoteList extends Component {
 									note={note}
 									label={key}
 									moveNoteToAnotherCollection={this.props.moveNoteToAnotherCollection}
+									removeNoteFromCollection={this.props.removeNoteFromCollection}
 								></NoteItem>
 							))}
 						</div>

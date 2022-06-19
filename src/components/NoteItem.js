@@ -101,7 +101,10 @@ export default class NoteItem extends Component {
 									>
 										{this.props.label === 'catatan' ? <MdArchive></MdArchive> : <MdUnarchive></MdUnarchive>}
 									</button>
-									<button className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200">
+									<button
+										onClick={() => this.props.removeNoteFromCollection(this.props.note.id, this.props.label)}
+										className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
+									>
 										<MdDelete></MdDelete>
 									</button>
 								</div>
