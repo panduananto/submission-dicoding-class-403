@@ -94,13 +94,23 @@ export default class NoteItem extends Component {
 								}}
 							>
 								<div className="inline-flex gap-2">
-									<button
-										type="button"
-										onClick={() => this.props.moveNoteToAnotherCollection(this.props.note.id, 'catatan', 'arsip')}
-										className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
-									>
-										{this.props.label === 'catatan' ? <MdArchive></MdArchive> : <MdUnarchive></MdUnarchive>}
-									</button>
+									{this.props.label === 'catatan' ? (
+										<button
+											type="button"
+											onClick={() => this.props.moveNoteToAnotherCollection(this.props.note.id, 'catatan', 'arsip')}
+											className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
+										>
+											<MdArchive></MdArchive>
+										</button>
+									) : (
+										<button
+											type="button"
+											onClick={() => this.props.moveNoteToAnotherCollection(this.props.note.id, 'arsip', 'catatan')}
+											className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
+										>
+											<MdUnarchive></MdUnarchive>
+										</button>
+									)}
 									<button
 										onClick={() => this.props.removeNoteFromCollection(this.props.note.id, this.props.label)}
 										className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
