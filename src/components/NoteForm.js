@@ -82,8 +82,8 @@ export default class NoteForm extends Component {
 
 	render() {
 		return (
-			<form ref={this.formRef} onSubmit={this.onSubmitEventHandler}>
-				<div className="w-[600px] overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm">
+			<form ref={this.formRef} onSubmit={this.onSubmitEventHandler} className="w-full">
+				<div className="mx-auto w-full max-w-[600px] overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm">
 					<div className="p-5">
 						{this.state.titleFieldVisible && (
 							<Fragment>
