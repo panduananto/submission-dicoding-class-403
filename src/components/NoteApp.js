@@ -18,6 +18,36 @@ export default class NoteApp extends Component {
 		this.onMovingNoteToAnotherCollection = this.onMovingNoteToAnotherCollection.bind(this);
 		this.onRemoveNoteFromCollection = this.onRemoveNoteFromCollection.bind(this);
 		this.onUpdateNoteHandler = this.onUpdateNoteHandler.bind(this);
+		this.saveDataToLocalStorage = this.saveDataToLocalStorage.bind(this);
+	}
+
+	componentDidMount() {
+		if (this.isStorageExist()) {
+			this.loadDataFromLocalStorage();
+		}
+	}
+
+	isStorageExist() {
+		if (typeof Storage === undefined) {
+			alert('Browser tidak mendukung local storage');
+			return false;
+		}
+
+		return true;
+	}
+
+	loadDataFromLocalStorage() {
+		const localStorageData = localStorage.getItem('NOTES_APP');
+		let data = JSON.parse(localStorageData);
+
+		this.setState(data);
+	}
+
+	saveDataToLocalStorage() {
+		if (this.isStorageExist()) {
+			const parsed = JSON.stringify(this.state);
+			localStorage.setItem('NOTES_APP', parsed);
+		}
 	}
 
 	generateNoteId() {
@@ -25,21 +55,26 @@ export default class NoteApp extends Component {
 	}
 
 	onAddNoteHandler({ title, content }) {
-		this.setState((prevState) => {
-			return {
-				notes: {
-					...prevState.notes,
-					catatan: [
-						...prevState.notes.catatan,
-						{
-							id: this.generateNoteId(),
-							title,
-							content,
-						},
-					],
-				},
-			};
-		});
+		this.setState(
+			(prevState) => {
+				return {
+					notes: {
+						...prevState.notes,
+						catatan: [
+							...prevState.notes.catatan,
+							{
+								id: this.generateNoteId(),
+								title,
+								content,
+							},
+						],
+					},
+				};
+			},
+			() => {
+				this.saveDataToLocalStorage();
+			}
+		);
 	}
 
 	findNote(id, key) {
@@ -60,28 +95,38 @@ export default class NoteApp extends Component {
 
 		if (target === null) return;
 
-		this.setState((prevState) => {
-			return {
-				notes: {
-					...prevState.notes,
-					[fromKey]: [...recollected],
-					[toKey]: [...prevState.notes[toKey], target],
-				},
-			};
-		});
+		this.setState(
+			(prevState) => {
+				return {
+					notes: {
+						...prevState.notes,
+						[fromKey]: [...recollected],
+						[toKey]: [...prevState.notes[toKey], target],
+					},
+				};
+			},
+			() => {
+				this.saveDataToLocalStorage();
+			}
+		);
 	}
 
 	onRemoveNoteFromCollection(id, key) {
 		const recollected = this.recollectNote(id, key);
 
-		this.setState((prevState) => {
-			return {
-				notes: {
-					...prevState.notes,
-					[key]: [...recollected],
-				},
-			};
-		});
+		this.setState(
+			(prevState) => {
+				return {
+					notes: {
+						...prevState.notes,
+						[key]: [...recollected],
+					},
+				};
+			},
+			() => {
+				this.saveDataToLocalStorage();
+			}
+		);
 	}
 
 	onUpdateNoteHandler(id, key, note) {
@@ -92,14 +137,19 @@ export default class NoteApp extends Component {
 		const { title, content } = note;
 		const updatedNote = { ...this.state.notes[key][target], title, content };
 
-		this.setState((prevState) => {
-			return {
-				notes: {
-					...prevState.notes,
-					[key]: [...prevState.notes[key].slice(0, target), updatedNote, ...prevState.notes[key].slice(target + 1)],
-				},
-			};
-		});
+		this.setState(
+			(prevState) => {
+				return {
+					notes: {
+						...prevState.notes,
+						[key]: [...prevState.notes[key].slice(0, target), updatedNote, ...prevState.notes[key].slice(target + 1)],
+					},
+				};
+			},
+			() => {
+				this.saveDataToLocalStorage();
+			}
+		);
 	}
 
 	render() {
