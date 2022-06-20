@@ -4,6 +4,22 @@ import NoteItem from './NoteItem';
 import Tabs from './Tabs';
 
 export default class NoteList extends Component {
+	constructor(props) {
+		super(props);
+
+		this.getNote = this.getNote.bind(this);
+	}
+
+	getNote(searchTerm, key) {
+		const result = this.props.notes[key].filter((note) => {
+			const title = note.title.toLowerCase();
+
+			return title.includes(searchTerm.toLowerCase());
+		});
+
+		return result;
+	}
+
 	render() {
 		return (
 			<Fragment>
@@ -17,7 +33,7 @@ export default class NoteList extends Component {
 							}`}
 						>
 							{this.props.notes[key].length !== 0 ? (
-								this.props.notes[key].map((note) => (
+								this.getNote(this.props.searchTerm, key).map((note) => (
 									<NoteItem
 										key={note.id}
 										note={note}
