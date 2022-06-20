@@ -1,4 +1,4 @@
-import React, { Component, createRef, Fragment } from 'react';
+import React, { Component, createRef } from 'react';
 
 export default class NoteForm extends Component {
 	constructor(props) {
@@ -10,6 +10,7 @@ export default class NoteForm extends Component {
 			title: '',
 			content: '',
 			titleFieldVisible: false,
+			titleCharacterLimit: 30,
 		};
 
 		this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
@@ -50,6 +51,9 @@ export default class NoteForm extends Component {
 		event.preventDefault();
 
 		const { title, content } = this.state;
+
+		if (title.length > this.state.titleCharacterLimit) return;
+
 		this.props.addNote({ title, content });
 
 		this.setState({
@@ -89,20 +93,28 @@ export default class NoteForm extends Component {
 				<div className="w-full overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm">
 					<div className="p-5">
 						{this.state.titleFieldVisible && (
-							<Fragment>
-								<label htmlFor="title" className="sr-only mb-2 text-sm font-medium text-slate-700">
-									Judul Catatan
-								</label>
-								<input
-									type="text"
-									id="title"
-									autoComplete="off"
-									placeholder="Judul catatan"
-									value={this.state.title}
-									onChange={this.onTitleChangeHandler}
-									className="mb-2 block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
-								/>
-							</Fragment>
+							<div className="mb-2">
+								<div className="relative">
+									<label htmlFor="title" className="sr-only mb-2 text-sm font-medium text-slate-700">
+										Judul Catatan
+									</label>
+									<input
+										type="text"
+										id="title"
+										autoComplete="off"
+										placeholder="Judul catatan"
+										value={this.state.title}
+										onChange={this.onTitleChangeHandler}
+										className="block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
+									/>
+									<span className="absolute inset-y-0 right-0 flex w-12 items-center justify-center rounded-lg bg-blue-200 text-center text-xs font-bold text-blue-900">
+										{this.state.title.length}/{this.state.titleCharacterLimit}
+									</span>
+								</div>
+								{this.state.title.length > this.state.titleCharacterLimit && (
+									<span className="text-xs text-red-600">Maaf, judul melebihi limit karakter</span>
+								)}
+							</div>
 						)}
 						<label htmlFor="content" className="sr-only mb-2 text-sm font-medium text-slate-700">
 							Catatan
