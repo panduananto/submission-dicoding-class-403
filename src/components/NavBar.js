@@ -7,7 +7,7 @@ import SearchInput from './SearchInput';
 export default class NavBar extends Component {
 	render() {
 		return (
-			<nav className="border-b border-slate-300 bg-white">
+			<nav className="fixed inset-x-0 top-0 z-10 border-b border-slate-300 bg-white">
 				<div className="mx-auto flex max-w-screen-xl items-center justify-between gap-6 py-4 px-6">
 					<div className="flex items-center space-x-2">
 						<span>

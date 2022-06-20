@@ -60,7 +60,7 @@ export default class NoteItem extends Component {
 		return (
 			<div
 				onClick={this.handleOpenModal}
-				className="group relative col-span-3 overflow-hidden rounded-lg border border-slate-300 bg-white p-3 text-slate-900 shadow-sm transition-shadow duration-200 ease-in-out hover:shadow-lg"
+				className="group relative col-span-12 overflow-hidden rounded-lg border border-slate-300 bg-white p-3 text-slate-900 shadow-sm transition-shadow duration-200 ease-in-out hover:shadow-lg md:col-span-6 lg:col-span-3"
 			>
 				<h1 className="mb-2 font-semibold">{this.props.note.title}</h1>
 				<p>{this.props.note.content}</p>

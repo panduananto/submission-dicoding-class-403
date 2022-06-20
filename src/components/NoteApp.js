@@ -104,7 +104,7 @@ export default class NoteApp extends Component {
 
 	render() {
 		return (
-			<main>
+			<main className="pt-20">
 				<div className="mx-auto flex max-w-screen-xl flex-col items-center justify-center space-y-12 py-12 px-6">
 					<NoteForm addNote={this.onAddNoteHandler}></NoteForm>
 					<NoteList
