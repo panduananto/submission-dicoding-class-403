@@ -13,6 +13,7 @@ export default class App extends Component {
 		};
 
 		this.onSearchTermChangeHandler = this.onSearchTermChangeHandler.bind(this);
+		this.onClearSearchTermHandler = this.onClearSearchTermHandler.bind(this);
 	}
 
 	onSearchTermChangeHandler(event) {
@@ -24,10 +25,23 @@ export default class App extends Component {
 		});
 	}
 
+	onClearSearchTermHandler() {
+		this.setState((prevState) => {
+			return {
+				...prevState,
+				searchTerm: '',
+			};
+		});
+	}
+
 	render() {
 		return (
 			<div className="flex h-full flex-col">
-				<NavBar searchTerm={this.state.searchTerm} onSearchTermChangeHandler={this.onSearchTermChangeHandler}></NavBar>
+				<NavBar
+					searchTerm={this.state.searchTerm}
+					onSearchTermChangeHandler={this.onSearchTermChangeHandler}
+					onClearSearchTermHandler={this.onClearSearchTermHandler}
+				></NavBar>
 				<NoteApp searchTerm={this.state.searchTerm}></NoteApp>
 				<Footer></Footer>
 			</div>
