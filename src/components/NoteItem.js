@@ -9,12 +9,12 @@ export default class NoteItem extends Component {
 
 		this.state = {
 			title: this.props.note.title,
-			content: this.props.note.content,
+			body: this.props.note.body,
 			showModal: false,
 		};
 
 		this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
-		this.onContentChangeHandler = this.onContentChangeHandler.bind(this);
+		this.onBodyChangeHandler = this.onBodyChangeHandler.bind(this);
 		this.handleOpenModal = this.handleOpenModal.bind(this);
 		this.handleCloseModal = this.handleCloseModal.bind(this);
 		this.handleUpdateNote = this.handleUpdateNote.bind(this);
@@ -29,11 +29,11 @@ export default class NoteItem extends Component {
 		});
 	}
 
-	onContentChangeHandler(event) {
+	onBodyChangeHandler(event) {
 		this.setState((prevState) => {
 			return {
 				...prevState,
-				content: event.target.value,
+				body: event.target.value,
 			};
 		});
 	}
@@ -52,7 +52,7 @@ export default class NoteItem extends Component {
 		this.handleCloseModal(event);
 		this.props.updateNote(this.props.note.id, this.props.label, {
 			title: this.state.title,
-			content: this.state.content,
+			body: this.state.body,
 		});
 	}
 
@@ -63,7 +63,7 @@ export default class NoteItem extends Component {
 				className="group relative col-span-12 overflow-hidden rounded-lg border border-slate-300 bg-white p-3 text-slate-900 shadow-sm transition-shadow duration-200 ease-in-out hover:shadow-lg md:col-span-6 lg:col-span-3"
 			>
 				<h1 className="mb-2 font-semibold">{this.props.note.title}</h1>
-				<p>{this.props.note.content}</p>
+				<p>{this.props.note.body}</p>
 				<span className="absolute top-3 right-3">
 					<MdOutlineModeEdit className="h-6 w-6 text-white transition-colors duration-200 ease-in-out group-hover:text-slate-500"></MdOutlineModeEdit>
 				</span>
@@ -73,8 +73,8 @@ export default class NoteItem extends Component {
 					onRequestClose={this.handleCloseModal}
 					title={this.state.title}
 					onTitleChangeHandler={this.onTitleChangeHandler}
-					content={this.state.content}
-					onContentChangeHandler={this.onContentChangeHandler}
+					body={this.state.body}
+					onBodyChangeHandler={this.onBodyChangeHandler}
 					label={this.props.label}
 					moveNoteToAnotherCollection={this.props.moveNoteToAnotherCollection}
 					removeNoteFromCollection={this.props.removeNoteFromCollection}

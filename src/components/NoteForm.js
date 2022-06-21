@@ -8,13 +8,13 @@ export default class NoteForm extends Component {
 
 		this.state = {
 			title: '',
-			content: '',
+			body: '',
 			titleFieldVisible: false,
 			titleCharacterLimit: 30,
 		};
 
 		this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
-		this.onContentChangeHandler = this.onContentChangeHandler.bind(this);
+		this.onBodyChangeHandler = this.onBodyChangeHandler.bind(this);
 		this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
 		this.onShowTitleField = this.onShowTitleField.bind(this);
 		this.onHideTitleField = this.onHideTitleField.bind(this);
@@ -38,11 +38,11 @@ export default class NoteForm extends Component {
 		});
 	}
 
-	onContentChangeHandler(event) {
+	onBodyChangeHandler(event) {
 		this.setState((prevState) => {
 			return {
 				...prevState,
-				content: event.target.value,
+				body: event.target.value,
 			};
 		});
 	}
@@ -50,15 +50,15 @@ export default class NoteForm extends Component {
 	onSubmitEventHandler(event) {
 		event.preventDefault();
 
-		const { title, content } = this.state;
+		const { title, body } = this.state;
 
 		if (title.length > this.state.titleCharacterLimit) return;
 
-		this.props.addNote({ title, content });
+		this.props.addNote({ title, body });
 
 		this.setState({
 			title: '',
-			content: '',
+			body: '',
 			titleFieldVisible: false,
 		});
 	}
@@ -116,17 +116,17 @@ export default class NoteForm extends Component {
 								)}
 							</div>
 						)}
-						<label htmlFor="content" className="sr-only mb-2 text-sm font-medium text-slate-700">
+						<label htmlFor="body" className="sr-only mb-2 text-sm font-medium text-slate-700">
 							Catatan
 						</label>
 						<textarea
-							name="content"
-							id="content"
+							name="body"
+							id="body"
 							cols="20"
 							rows="3"
 							placeholder="Tulis catatanmu di sini..."
-							value={this.state.content}
-							onChange={this.onContentChangeHandler}
+							value={this.state.body}
+							onChange={this.onBodyChangeHandler}
 							onFocus={this.onShowTitleField}
 							className="block w-full resize-none border-0 p-0 text-slate-900 outline-none scrollbar-hide placeholder:font-medium placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
 						></textarea>

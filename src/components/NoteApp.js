@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getInitialData } from '../utils';
 
 import NoteForm from './NoteForm';
 import NoteList from './NoteList';
@@ -38,9 +39,28 @@ export default class NoteApp extends Component {
 
 	loadDataFromLocalStorage() {
 		const localStorageData = localStorage.getItem('NOTES_APP');
-		let data = JSON.parse(localStorageData);
 
-		this.setState(data);
+		if (localStorageData) {
+			let data = JSON.parse(localStorageData);
+
+			this.setState(data);
+		} else {
+			let data = getInitialData();
+
+			this.setState(
+				(prevState) => {
+					return {
+						notes: {
+							...prevState.notes,
+							catatan: data,
+						},
+					};
+				},
+				() => {
+					this.saveDataToLocalStorage();
+				}
+			);
+		}
 	}
 
 	saveDataToLocalStorage() {
@@ -54,7 +74,7 @@ export default class NoteApp extends Component {
 		return +new Date();
 	}
 
-	onAddNoteHandler({ title, content }) {
+	onAddNoteHandler({ title, body }) {
 		this.setState(
 			(prevState) => {
 				return {
@@ -65,7 +85,9 @@ export default class NoteApp extends Component {
 							{
 								id: this.generateNoteId(),
 								title,
-								content,
+								body,
+								createdAt: new Date().toISOString(),
+								archived: false,
 							},
 						],
 					},
@@ -94,6 +116,12 @@ export default class NoteApp extends Component {
 		const recollected = this.recollectNote(id, fromKey);
 
 		if (target === null) return;
+
+		if (fromKey === 'catatan') {
+			target.archived = true;
+		} else {
+			target.archived = false;
+		}
 
 		this.setState(
 			(prevState) => {
@@ -134,8 +162,8 @@ export default class NoteApp extends Component {
 
 		if (target === -1) return;
 
-		const { title, content } = note;
-		const updatedNote = { ...this.state.notes[key][target], title, content };
+		const { title, body } = note;
+		const updatedNote = { ...this.state.notes[key][target], title, body };
 
 		this.setState(
 			(prevState) => {

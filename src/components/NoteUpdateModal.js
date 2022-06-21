@@ -43,17 +43,17 @@ export default class NoteUpdateModal extends Component {
 						onChange={this.props.onTitleChangeHandler}
 						className="mb-2 block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
 					/>
-					<label htmlFor="content" className="sr-only mb-2 text-sm font-medium text-slate-700">
+					<label htmlFor="body" className="sr-only mb-2 text-sm font-medium text-slate-700">
 						Catatan
 					</label>
 					<textarea
-						name="content"
-						id="content"
+						name="body"
+						id="body"
 						cols="20"
 						rows="6"
 						placeholder="Tulis catatanmu di sini..."
-						value={this.props.content}
-						onChange={this.props.onContentChangeHandler}
+						value={this.props.body}
+						onChange={this.props.onBodyChangeHandler}
 						className="block w-full resize-none border-0 p-0 text-slate-900 outline-none scrollbar-hide placeholder:font-medium placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
 					></textarea>
 					<div className="mt-8 flex justify-between">
