@@ -29,7 +29,11 @@ export default class NoteList extends Component {
 							key={key}
 							data-label={key}
 							className={`${
-								this.props.notes[key].length !== 0 ? 'grid w-full grid-cols-12 gap-4' : 'w-full max-w-[600px]'
+								this.props.notes[key].length !== 0
+									? this.props.gridLayout
+										? 'grid w-full grid-cols-12 gap-4'
+										: 'flex w-full max-w-[600px] flex-col space-y-4'
+									: 'w-full max-w-[600px]'
 							}`}
 						>
 							{this.props.notes[key].length !== 0 ? (
@@ -41,6 +45,7 @@ export default class NoteList extends Component {
 										moveNoteToAnotherCollection={this.props.moveNoteToAnotherCollection}
 										removeNoteFromCollection={this.props.removeNoteFromCollection}
 										updateNote={this.props.updateNote}
+										gridLayout={this.props.gridLayout}
 									></NoteItem>
 								))
 							) : (

@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
+import { IconContext } from 'react-icons';
 import { HiCheckCircle } from 'react-icons/hi';
+import { MdOutlineDarkMode, MdOutlineGridView, MdOutlineViewAgenda, MdOutlineWbSunny } from 'react-icons/md';
 
 import SearchInput from './SearchInput';
 
@@ -15,11 +17,34 @@ export default class NavBar extends Component {
 						</span>
 						<span className="font-rubik text-xl font-medium text-slate-900">Notenote</span>
 					</div>
-					<SearchInput
-						searchTerm={this.props.searchTerm}
-						onSearchTermChangeHandler={this.props.onSearchTermChangeHandler}
-						onClearSearchTermHandler={this.props.onClearSearchTermHandler}
-					></SearchInput>
+					<div className="flex items-center space-x-4">
+						<SearchInput
+							searchTerm={this.props.searchTerm}
+							onSearchTermChangeHandler={this.props.onSearchTermChangeHandler}
+							onClearSearchTermHandler={this.props.onClearSearchTermHandler}
+						></SearchInput>
+						<IconContext.Provider
+							value={{
+								className: 'h-5 w-5 text-slate-900 transition-colors duration-200 ease-in-out',
+							}}
+						>
+							<div className="flex items-center space-x-2">
+								<Fragment>
+									<button
+										type="button"
+										onClick={this.props.onChangeLayoutHandler}
+										className="group inline-flex items-center rounded-lg p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
+									>
+										{this.props.gridLayout ? (
+											<MdOutlineGridView></MdOutlineGridView>
+										) : (
+											<MdOutlineViewAgenda></MdOutlineViewAgenda>
+										)}
+									</button>
+								</Fragment>
+							</div>
+						</IconContext.Provider>
+					</div>
 				</div>
 			</nav>
 		);

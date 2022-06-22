@@ -191,6 +191,7 @@ export default class NoteApp extends Component {
 						moveNoteToAnotherCollection={this.onMovingNoteToAnotherCollection}
 						removeNoteFromCollection={this.onRemoveNoteFromCollection}
 						updateNote={this.onUpdateNoteHandler}
+						gridLayout={this.props.gridLayout}
 					></NoteList>
 				</div>
 			</main>

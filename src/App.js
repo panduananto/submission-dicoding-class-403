@@ -10,10 +10,12 @@ export default class App extends Component {
 
 		this.state = {
 			searchTerm: '',
+			gridLayout: true,
 		};
 
 		this.onSearchTermChangeHandler = this.onSearchTermChangeHandler.bind(this);
 		this.onClearSearchTermHandler = this.onClearSearchTermHandler.bind(this);
+		this.onChangeLayoutHandler = this.onChangeLayoutHandler.bind(this);
 	}
 
 	onSearchTermChangeHandler(event) {
@@ -34,6 +36,15 @@ export default class App extends Component {
 		});
 	}
 
+	onChangeLayoutHandler() {
+		this.setState((prevState) => {
+			return {
+				...prevState,
+				gridLayout: !this.state.gridLayout,
+			};
+		});
+	}
+
 	render() {
 		return (
 			<div className="flex h-full flex-col">
@@ -41,8 +52,10 @@ export default class App extends Component {
 					searchTerm={this.state.searchTerm}
 					onSearchTermChangeHandler={this.onSearchTermChangeHandler}
 					onClearSearchTermHandler={this.onClearSearchTermHandler}
+					gridLayout={this.state.gridLayout}
+					onChangeLayoutHandler={this.onChangeLayoutHandler}
 				></NavBar>
-				<NoteApp searchTerm={this.state.searchTerm}></NoteApp>
+				<NoteApp searchTerm={this.state.searchTerm} gridLayout={this.state.gridLayout}></NoteApp>
 				<Footer></Footer>
 			</div>
 		);
