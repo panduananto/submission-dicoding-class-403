@@ -182,7 +182,7 @@ export default class NoteApp extends Component {
 
 	render() {
 		return (
-			<main className="pt-20">
+			<main className="bg-white pt-20 dark:bg-slate-900">
 				<div className="mx-auto flex max-w-screen-xl flex-col items-center justify-center space-y-12 py-12 px-6">
 					<NoteForm addNote={this.onAddNoteHandler}></NoteForm>
 					<NoteList
