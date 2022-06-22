@@ -62,12 +62,12 @@ export default class NoteItem extends Component {
 				onClick={this.handleOpenModal}
 				className={`${
 					this.props.gridLayout ? 'col-span-12 md:col-span-6 lg:col-span-3' : ''
-				} group relative cursor-pointer overflow-hidden rounded-lg border border-slate-300 bg-white p-3 text-slate-900 shadow-sm transition-shadow duration-200 ease-in-out hover:shadow-lg`}
+				} group relative cursor-pointer overflow-hidden rounded-lg border border-slate-300 bg-white p-3 text-slate-900 shadow-sm transition-shadow duration-200 ease-in-out hover:shadow-lg dark:border-slate-600 dark:bg-slate-800 dark:text-white`}
 			>
 				<h1 className="mb-2 font-semibold">{this.props.note.title}</h1>
 				<p>{this.props.note.body}</p>
 				<span className="absolute top-3 right-3">
-					<MdOutlineModeEdit className="h-6 w-6 text-white transition-colors duration-200 ease-in-out group-hover:text-slate-500"></MdOutlineModeEdit>
+					<MdOutlineModeEdit className="h-6 w-6 text-white transition-colors duration-200 ease-in-out group-hover:text-slate-500 dark:text-slate-800 dark:group-hover:text-slate-400"></MdOutlineModeEdit>
 				</span>
 				<NoteUpdateModal
 					noteId={this.props.note.id}

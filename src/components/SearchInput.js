@@ -22,7 +22,7 @@ export default class SearchInput extends Component {
 							placeholder="Cari catatanmu dari judul..."
 							value={this.props.searchTerm}
 							onChange={this.props.onSearchTermChangeHandler}
-							className="block w-full rounded-lg border border-slate-300 bg-slate-50 p-3 pl-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-700 focus:outline-none focus:ring-blue-700 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+							className="block w-full rounded-lg border border-slate-300 bg-slate-50 p-3 pl-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-700 focus:outline-none focus:ring-blue-700 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:focus:border-blue-600 dark:focus:ring-blue-600"
 						/>
 						{this.props.searchTerm && (
 							<button
@@ -30,7 +30,7 @@ export default class SearchInput extends Component {
 								onClick={this.props.onClearSearchTermHandler}
 								className="absolute inset-y-0 right-0 flex items-center pr-3"
 							>
-								<MdCancel className="dark:hover:text-gray-500"></MdCancel>
+								<MdCancel className="dark:hover:text-gray-300"></MdCancel>
 							</button>
 						)}
 					</div>

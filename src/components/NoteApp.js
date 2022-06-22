@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { getInitialData } from '../utils';
 
 import NoteForm from './NoteForm';
 import NoteList from './NoteList';
+
+import { getInitialData, isStorageExist, saveDataToLocalStorage } from '../utils';
 
 export default class NoteApp extends Component {
 	constructor(props) {
@@ -19,22 +20,12 @@ export default class NoteApp extends Component {
 		this.onMovingNoteToAnotherCollection = this.onMovingNoteToAnotherCollection.bind(this);
 		this.onRemoveNoteFromCollection = this.onRemoveNoteFromCollection.bind(this);
 		this.onUpdateNoteHandler = this.onUpdateNoteHandler.bind(this);
-		this.saveDataToLocalStorage = this.saveDataToLocalStorage.bind(this);
 	}
 
 	componentDidMount() {
-		if (this.isStorageExist()) {
+		if (isStorageExist()) {
 			this.loadDataFromLocalStorage();
 		}
-	}
-
-	isStorageExist() {
-		if (typeof Storage === undefined) {
-			alert('Browser tidak mendukung local storage');
-			return false;
-		}
-
-		return true;
 	}
 
 	loadDataFromLocalStorage() {
@@ -57,16 +48,9 @@ export default class NoteApp extends Component {
 					};
 				},
 				() => {
-					this.saveDataToLocalStorage();
+					saveDataToLocalStorage('NOTES_APP', this.state);
 				}
 			);
-		}
-	}
-
-	saveDataToLocalStorage() {
-		if (this.isStorageExist()) {
-			const parsed = JSON.stringify(this.state);
-			localStorage.setItem('NOTES_APP', parsed);
 		}
 	}
 
@@ -94,7 +78,7 @@ export default class NoteApp extends Component {
 				};
 			},
 			() => {
-				this.saveDataToLocalStorage();
+				saveDataToLocalStorage('NOTES_APP', this.state);
 			}
 		);
 	}
@@ -134,7 +118,7 @@ export default class NoteApp extends Component {
 				};
 			},
 			() => {
-				this.saveDataToLocalStorage();
+				saveDataToLocalStorage('NOTES_APP', this.state);
 			}
 		);
 	}
@@ -152,7 +136,7 @@ export default class NoteApp extends Component {
 				};
 			},
 			() => {
-				this.saveDataToLocalStorage();
+				saveDataToLocalStorage('NOTES_APP', this.state);
 			}
 		);
 	}
@@ -175,7 +159,7 @@ export default class NoteApp extends Component {
 				};
 			},
 			() => {
-				this.saveDataToLocalStorage();
+				saveDataToLocalStorage('NOTES_APP', this.state);
 			}
 		);
 	}

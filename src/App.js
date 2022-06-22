@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import NavBar from './components/NavBar';
 import NoteApp from './components/NoteApp';
 import Footer from './components/Footer';
+import { isStorageExist, saveDataToLocalStorage } from './utils';
 
 export default class App extends Component {
 	constructor(props) {
@@ -10,14 +11,22 @@ export default class App extends Component {
 
 		this.state = {
 			searchTerm: '',
-			gridLayout: true,
-			darkMode: false,
+			theme: {
+				gridLayout: true,
+				darkMode: false,
+			},
 		};
 
 		this.onSearchTermChangeHandler = this.onSearchTermChangeHandler.bind(this);
 		this.onClearSearchTermHandler = this.onClearSearchTermHandler.bind(this);
 		this.onChangeLayoutHandler = this.onChangeLayoutHandler.bind(this);
 		this.onChangeDarkThemeHandler = this.onChangeDarkThemeHandler.bind(this);
+	}
+
+	componentDidMount() {
+		if (isStorageExist()) {
+			this.loadThemeFromLocalStorage();
+		}
 	}
 
 	onSearchTermChangeHandler(event) {
@@ -39,23 +48,59 @@ export default class App extends Component {
 	}
 
 	onChangeLayoutHandler() {
-		this.setState((prevState) => {
-			return {
-				...prevState,
-				gridLayout: !this.state.gridLayout,
-			};
-		});
+		this.setState(
+			(prevState) => {
+				return {
+					...prevState,
+					theme: {
+						...prevState.theme,
+						gridLayout: !this.state.theme.gridLayout,
+					},
+				};
+			},
+			() => {
+				saveDataToLocalStorage('NOTES_THEME', this.state.theme);
+			}
+		);
 	}
 
 	onChangeDarkThemeHandler() {
 		document.documentElement.classList.toggle('dark');
 
-		this.setState((prevState) => {
-			return {
-				...prevState,
-				darkMode: !this.state.darkMode,
-			};
-		});
+		this.setState(
+			(prevState) => {
+				return {
+					...prevState,
+					theme: {
+						...prevState.theme,
+						darkMode: !this.state.theme.darkMode,
+					},
+				};
+			},
+			() => {
+				saveDataToLocalStorage('NOTES_THEME', this.state.theme);
+			}
+		);
+	}
+
+	loadThemeFromLocalStorage() {
+		const localStorageThemeData = localStorage.getItem('NOTES_THEME');
+		let data = JSON.parse(localStorageThemeData);
+
+		if (data !== null) {
+			if (data.darkMode === true || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+
+			this.setState((prevState) => {
+				return {
+					...prevState,
+					theme: data,
+				};
+			});
+		}
 	}
 
 	render() {
@@ -65,12 +110,12 @@ export default class App extends Component {
 					searchTerm={this.state.searchTerm}
 					onSearchTermChangeHandler={this.onSearchTermChangeHandler}
 					onClearSearchTermHandler={this.onClearSearchTermHandler}
-					gridLayout={this.state.gridLayout}
+					gridLayout={this.state.theme.gridLayout}
 					onChangeLayoutHandler={this.onChangeLayoutHandler}
-					darkMode={this.state.darkMode}
+					darkMode={this.state.theme.darkMode}
 					onChangeDarkThemeHandler={this.onChangeDarkThemeHandler}
 				></NavBar>
-				<NoteApp searchTerm={this.state.searchTerm} gridLayout={this.state.gridLayout}></NoteApp>
+				<NoteApp searchTerm={this.state.searchTerm} gridLayout={this.state.theme.gridLayout}></NoteApp>
 				<Footer></Footer>
 			</div>
 		);

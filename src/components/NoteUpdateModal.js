@@ -13,22 +13,8 @@ export default class NoteUpdateModal extends Component {
 				shouldCloseOnOverlayClick={true}
 				contentLabel="modal for editing note"
 				closeTimeoutMS={150}
-				style={{
-					content: {
-						position: 'static',
-						inset: '0px',
-						borderColor: '#cbd5e1',
-						borderRadius: '0.5rem',
-						boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
-						width: '100%',
-						maxWidth: '600px',
-					},
-					overlay: {
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-					},
-				}}
+				className="NoteModal"
+				overlayClassName="NoteModal__Overlay"
 			>
 				<form className="h-full">
 					<label htmlFor="title" className="sr-only mb-2 text-sm font-medium text-slate-700">
@@ -41,7 +27,7 @@ export default class NoteUpdateModal extends Component {
 						placeholder="Judul catatan"
 						value={this.props.title}
 						onChange={this.props.onTitleChangeHandler}
-						className="mb-2 block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
+						className="mb-2 block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0 dark:bg-slate-800 dark:text-white"
 					/>
 					<label htmlFor="body" className="sr-only mb-2 text-sm font-medium text-slate-700">
 						Catatan
@@ -54,13 +40,13 @@ export default class NoteUpdateModal extends Component {
 						placeholder="Tulis catatanmu di sini..."
 						value={this.props.body}
 						onChange={this.props.onBodyChangeHandler}
-						className="block w-full resize-none border-0 p-0 text-slate-900 outline-none scrollbar-hide placeholder:font-medium placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
+						className="block w-full resize-none border-0 p-0 text-slate-900 outline-none scrollbar-hide placeholder:font-medium placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0 dark:bg-slate-800 dark:text-white"
 					></textarea>
 					<div className="mt-8 flex justify-between">
 						<IconContext.Provider
 							value={{
 								className:
-									'h-5 w-5 text-slate-500 transition-colors duration-200 ease-in-out group-hover:text-slate-900',
+									'h-5 w-5 text-slate-500 dark:text-slate-400 transition-colors duration-200 ease-in-out group-hover:text-slate-900 dark:group-hover:text-slate-300',
 							}}
 						>
 							<div className="inline-flex gap-2">
@@ -68,7 +54,7 @@ export default class NoteUpdateModal extends Component {
 									<button
 										type="button"
 										onClick={() => this.props.moveNoteToAnotherCollection(this.props.noteId, 'catatan', 'arsip')}
-										className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
+										className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600"
 									>
 										<MdArchive></MdArchive>
 									</button>
@@ -76,14 +62,14 @@ export default class NoteUpdateModal extends Component {
 									<button
 										type="button"
 										onClick={() => this.props.moveNoteToAnotherCollection(this.props.noteId, 'arsip', 'catatan')}
-										className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
+										className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600"
 									>
 										<MdUnarchive></MdUnarchive>
 									</button>
 								)}
 								<button
 									onClick={() => this.props.removeNoteFromCollection(this.props.noteId, this.props.label)}
-									className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
+									className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600"
 								>
 									<MdDelete></MdDelete>
 								</button>
@@ -92,7 +78,7 @@ export default class NoteUpdateModal extends Component {
 						<button
 							type="button"
 							onClick={(event) => this.props.udpateNote(event)}
-							className="inline-flex items-center rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200"
+							className="inline-flex items-center rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
 						>
 							Done
 						</button>

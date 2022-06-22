@@ -90,7 +90,7 @@ export default class NoteForm extends Component {
 	render() {
 		return (
 			<form ref={this.formRef} onSubmit={this.onSubmitEventHandler} className="mx-auto w-full max-w-[600px]">
-				<div className="w-full overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm">
+				<div className="w-full overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm dark:border-slate-600 dark:bg-slate-700">
 					<div className="p-5">
 						{this.state.titleFieldVisible && (
 							<div className="mb-2">
@@ -105,7 +105,7 @@ export default class NoteForm extends Component {
 										placeholder="Judul catatan"
 										value={this.state.title}
 										onChange={this.onTitleChangeHandler}
-										className="block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
+										className="block w-full border-0 p-0 font-semibold text-slate-900 outline-none placeholder:text-lg placeholder:font-semibold placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0 dark:bg-slate-700 dark:text-white dark:placeholder:text-slate-400"
 									/>
 									<span className="absolute inset-y-0 right-0 flex w-12 items-center justify-center rounded-lg bg-blue-200 text-center text-xs font-bold text-blue-900">
 										{this.state.title.length}/{this.state.titleCharacterLimit}
@@ -128,11 +128,11 @@ export default class NoteForm extends Component {
 							value={this.state.body}
 							onChange={this.onBodyChangeHandler}
 							onFocus={this.onShowTitleField}
-							className="block w-full resize-none border-0 p-0 text-slate-900 outline-none scrollbar-hide placeholder:font-medium placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0"
+							className="block w-full resize-none border-0 p-0 text-slate-900 outline-none scrollbar-hide placeholder:font-medium placeholder:text-slate-500 focus:border-0 focus:outline-none focus:ring-0 dark:bg-slate-700 dark:text-white dark:placeholder:text-slate-400"
 						></textarea>
 					</div>
-					<div className="bg-gray-50 px-5 py-3 text-right">
-						<button className="inline-flex justify-center rounded-lg bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm transition-colors duration-200 ease-in-out hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2">
+					<div className="bg-slate-50 px-5 py-3 text-right dark:bg-slate-800">
+						<button className="inline-flex justify-center rounded-lg bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm transition-colors duration-200 ease-in-out hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2 dark:focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-800">
 							Catat
 						</button>
 					</div>
