@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
+import ReactTooltip from 'react-tooltip';
 import { IconContext } from 'react-icons';
 import { HiCheckCircle } from 'react-icons/hi';
 import { MdOutlineDarkMode, MdOutlineGridView, MdOutlineViewAgenda, MdOutlineWbSunny } from 'react-icons/md';
@@ -33,12 +34,28 @@ export default class NavBar extends Component {
 									<button
 										type="button"
 										onClick={this.props.onChangeLayoutHandler}
-										className="group inline-flex items-center rounded-lg p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:hover:bg-slate-700"
+										className="group inline-flex items-center rounded-lg text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:hover:bg-slate-700"
 									>
 										{this.props.gridLayout ? (
-											<MdOutlineGridView></MdOutlineGridView>
+											<span data-tip="Grid view" data-for="gridView" className="p-2.5">
+												<MdOutlineGridView></MdOutlineGridView>
+												<ReactTooltip
+													id="gridView"
+													place="bottom"
+													effect="solid"
+													className="bg-slate-700"
+												></ReactTooltip>
+											</span>
 										) : (
-											<MdOutlineViewAgenda></MdOutlineViewAgenda>
+											<span data-tip="List view" data-for="listView" className="p-2.5">
+												<MdOutlineViewAgenda></MdOutlineViewAgenda>
+												<ReactTooltip
+													id="listView"
+													place="bottom"
+													effect="solid"
+													className="bg-slate-700"
+												></ReactTooltip>
+											</span>
 										)}
 									</button>
 								</Fragment>
@@ -46,12 +63,28 @@ export default class NavBar extends Component {
 									<button
 										type="button"
 										onClick={this.props.onChangeDarkThemeHandler}
-										className="group inline-flex items-center rounded-lg p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:hover:bg-slate-700"
+										className="group inline-flex items-center rounded-lg text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:hover:bg-slate-700"
 									>
 										{this.props.darkMode ? (
-											<MdOutlineDarkMode></MdOutlineDarkMode>
+											<div data-tip="Dark mode" data-for="darkMode" className="p-2.5">
+												<MdOutlineDarkMode></MdOutlineDarkMode>
+												<ReactTooltip
+													id="darkMode"
+													place="bottom"
+													effect="solid"
+													className="bg-slate-700"
+												></ReactTooltip>
+											</div>
 										) : (
-											<MdOutlineWbSunny></MdOutlineWbSunny>
+											<div data-tip="Light mode" data-for="lightMode" className="p-2.5">
+												<MdOutlineWbSunny></MdOutlineWbSunny>
+												<ReactTooltip
+													id="lightMode"
+													place="bottom"
+													effect="solid"
+													className="bg-slate-700"
+												></ReactTooltip>
+											</div>
 										)}
 									</button>
 								</Fragment>

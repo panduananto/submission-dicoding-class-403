@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import ReactModal from 'react-modal';
+import ReactTooltip from 'react-tooltip';
 import { MdArchive, MdUnarchive, MdDelete } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 
@@ -54,24 +55,33 @@ export default class NoteUpdateModal extends Component {
 									<button
 										type="button"
 										onClick={() => this.props.moveNoteToAnotherCollection(this.props.noteId, 'catatan', 'arsip')}
-										className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600"
+										className="group inline-flex items-center rounded-lg bg-slate-100 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600"
 									>
-										<MdArchive></MdArchive>
+										<span data-tip="Archive" data-for="archive" className="p-2.5">
+											<MdArchive></MdArchive>
+											<ReactTooltip id="archive" place="bottom" effect="solid"></ReactTooltip>
+										</span>
 									</button>
 								) : (
 									<button
 										type="button"
 										onClick={() => this.props.moveNoteToAnotherCollection(this.props.noteId, 'arsip', 'catatan')}
-										className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600"
+										className="group inline-flex items-center rounded-lg bg-slate-100 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600"
 									>
-										<MdUnarchive></MdUnarchive>
+										<span data-tip="Unarchive" data-for="unarchive" className="p-2.5">
+											<MdUnarchive></MdUnarchive>
+											<ReactTooltip id="unarchive" place="bottom" effect="solid"></ReactTooltip>
+										</span>
 									</button>
 								)}
 								<button
 									onClick={() => this.props.removeNoteFromCollection(this.props.noteId, this.props.label)}
-									className="group inline-flex items-center rounded-lg bg-slate-100 p-2.5 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600"
+									className="group inline-flex items-center rounded-lg bg-slate-100 text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600"
 								>
-									<MdDelete></MdDelete>
+									<span data-tip="Delete" data-for="deleteNote" className="p-2.5">
+										<MdDelete></MdDelete>
+										<ReactTooltip id="deleteNote" place="bottom" effect="solid"></ReactTooltip>
+									</span>
 								</button>
 							</div>
 						</IconContext.Provider>

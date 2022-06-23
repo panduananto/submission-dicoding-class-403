@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { MdOutlineModeEdit } from 'react-icons/md';
+
 import NoteUpdateModal from './NoteUpdateModal';
 
 export default class NoteItem extends Component {

@@ -22,7 +22,7 @@ export default class Tabs extends Component {
 	render() {
 		return (
 			<div className="flex w-full flex-col items-center justify-center space-y-14 sm:space-y-12">
-				<ul className="inline-flex space-x-4">
+				<ul className="flex w-full justify-center space-x-4 border-b border-slate-200 dark:border-slate-800">
 					{this.props.children.map((tab) => (
 						<li key={tab.props['data-label']}>
 							<TabsButton
