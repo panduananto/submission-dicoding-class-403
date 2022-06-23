@@ -43,7 +43,9 @@ export default class NavBar extends Component {
 													id="gridView"
 													place="bottom"
 													effect="solid"
-													className="bg-slate-700"
+													className="!bg-slate-700 !py-1 !px-2"
+													arrowColor="rgb(51, 65, 85)"
+													delayShow={200}
 												></ReactTooltip>
 											</span>
 										) : (
@@ -53,7 +55,9 @@ export default class NavBar extends Component {
 													id="listView"
 													place="bottom"
 													effect="solid"
-													className="bg-slate-700"
+													className="!bg-slate-700 !py-1 !px-2"
+													arrowColor="rgb(51, 65, 85)"
+													delayShow={200}
 												></ReactTooltip>
 											</span>
 										)}
@@ -72,7 +76,9 @@ export default class NavBar extends Component {
 													id="darkMode"
 													place="bottom"
 													effect="solid"
-													className="bg-slate-700"
+													className="!bg-slate-700 !py-1 !px-2"
+													arrowColor="rgb(51, 65, 85)"
+													delayShow={200}
 												></ReactTooltip>
 											</div>
 										) : (
@@ -82,7 +88,9 @@ export default class NavBar extends Component {
 													id="lightMode"
 													place="bottom"
 													effect="solid"
-													className="bg-slate-700"
+													className="!bg-slate-700 !py-1 !px-2"
+													arrowColor="rgb(51, 65, 85)"
+													delayShow={200}
 												></ReactTooltip>
 											</div>
 										)}

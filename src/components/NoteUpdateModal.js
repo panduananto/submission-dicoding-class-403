@@ -59,7 +59,14 @@ export default class NoteUpdateModal extends Component {
 									>
 										<span data-tip="Archive" data-for="archive" className="p-2.5">
 											<MdArchive></MdArchive>
-											<ReactTooltip id="archive" place="bottom" effect="solid"></ReactTooltip>
+											<ReactTooltip
+												id="archive"
+												place="bottom"
+												effect="solid"
+												className="!bg-slate-700 !py-1 !px-2"
+												arrowColor="rgb(51, 65, 85)"
+												delayShow={200}
+											></ReactTooltip>
 										</span>
 									</button>
 								) : (
@@ -70,7 +77,14 @@ export default class NoteUpdateModal extends Component {
 									>
 										<span data-tip="Unarchive" data-for="unarchive" className="p-2.5">
 											<MdUnarchive></MdUnarchive>
-											<ReactTooltip id="unarchive" place="bottom" effect="solid"></ReactTooltip>
+											<ReactTooltip
+												id="unarchive"
+												place="bottom"
+												effect="solid"
+												className="!bg-slate-700 !py-1 !px-2"
+												arrowColor="rgb(51, 65, 85)"
+												delayShow={200}
+											></ReactTooltip>
 										</span>
 									</button>
 								)}
@@ -80,7 +94,14 @@ export default class NoteUpdateModal extends Component {
 								>
 									<span data-tip="Delete" data-for="deleteNote" className="p-2.5">
 										<MdDelete></MdDelete>
-										<ReactTooltip id="deleteNote" place="bottom" effect="solid"></ReactTooltip>
+										<ReactTooltip
+											id="deleteNote"
+											place="bottom"
+											effect="solid"
+											className="!bg-slate-700 !py-1 !px-2"
+											arrowColor="rgb(51, 65, 85)"
+											delayShow={200}
+										></ReactTooltip>
 									</span>
 								</button>
 							</div>
