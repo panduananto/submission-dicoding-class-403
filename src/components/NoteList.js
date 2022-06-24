@@ -6,8 +6,6 @@ import Tabs from './Tabs';
 export default class NoteList extends Component {
 	constructor(props) {
 		super(props);
-
-		this.getNote = this.getNote.bind(this);
 	}
 
 	getNote(searchTerm, key) {

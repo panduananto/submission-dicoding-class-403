@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import autoBindReact from 'auto-bind/react';
 import { MdOutlineModeEdit } from 'react-icons/md';
 
 import NoteUpdateModal from './NoteUpdateModal';
@@ -14,11 +15,7 @@ export default class NoteItem extends Component {
 			showModal: false,
 		};
 
-		this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
-		this.onBodyChangeHandler = this.onBodyChangeHandler.bind(this);
-		this.handleOpenModal = this.handleOpenModal.bind(this);
-		this.handleCloseModal = this.handleCloseModal.bind(this);
-		this.handleUpdateNote = this.handleUpdateNote.bind(this);
+		autoBindReact(this);
 	}
 
 	onTitleChangeHandler(event) {
