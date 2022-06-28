@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import autoBindReact from 'auto-bind/react';
-
 import NoteForm from './NoteForm';
 import NoteList from './NoteList';
 
@@ -18,7 +16,10 @@ export default class NoteApp extends Component {
 			},
 		};
 
-		autoBindReact(this);
+		this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
+		this.onMovingNoteToAnotherCollection = this.onMovingNoteToAnotherCollection.bind(this);
+		this.onRemoveNoteFromCollection = this.onRemoveNoteFromCollection.bind(this);
+		this.onUpdateNoteHandler = this.onUpdateNoteHandler.bind(this);
 	}
 
 	componentDidMount() {

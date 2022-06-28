@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import autoBindReact from 'auto-bind/react';
-
 import TabsButton from './TabsButton';
 
 export default class Tabs extends Component {
@@ -12,7 +10,7 @@ export default class Tabs extends Component {
 			activeTab: this.props.children[0].props['data-label'],
 		};
 
-		autoBindReact(this);
+		this.onClickActiveTab = this.onClickActiveTab.bind(this);
 	}
 
 	onClickActiveTab(label) {

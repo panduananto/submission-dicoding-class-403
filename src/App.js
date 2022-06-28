@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import autoBindReact from 'auto-bind/react';
-
 import NavBar from './components/NavBar';
 import NoteApp from './components/NoteApp';
 import Footer from './components/Footer';
@@ -19,7 +17,10 @@ export default class App extends Component {
 			},
 		};
 
-		autoBindReact(this);
+		this.onSearchTermChangeHandler = this.onSearchTermChangeHandler.bind(this);
+		this.onClearSearchTermHandler = this.onClearSearchTermHandler.bind(this);
+		this.onChangeLayoutHandler = this.onChangeLayoutHandler.bind(this);
+		this.onChangeDarkThemeHandler = this.onChangeDarkThemeHandler.bind(this);
 	}
 
 	componentDidMount() {

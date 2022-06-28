@@ -1,7 +1,5 @@
 import React, { Component, createRef } from 'react';
 
-import autoBindReact from 'auto-bind/react';
-
 export default class NoteForm extends Component {
 	constructor(props) {
 		super(props);
@@ -14,7 +12,12 @@ export default class NoteForm extends Component {
 			titleCharacterLimit: 30,
 		};
 
-		autoBindReact(this);
+		this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
+		this.onBodyChangeHandler = this.onBodyChangeHandler.bind(this);
+		this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
+		this.onShowTitleField = this.onShowTitleField.bind(this);
+		this.onHideTitleField = this.onHideTitleField.bind(this);
+		this.onClickOutsideForm = this.onClickOutsideForm.bind(this);
 	}
 
 	componentDidMount() {

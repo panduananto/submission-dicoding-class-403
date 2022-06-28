@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, createRef, Fragment } from 'react';
 
 import ReactTooltip from 'react-tooltip';
 import { IconContext } from 'react-icons';
@@ -8,9 +8,35 @@ import { MdOutlineDarkMode, MdOutlineGridView, MdOutlineViewAgenda, MdOutlineWbS
 import SearchInput from './SearchInput';
 
 export default class NavBar extends Component {
+	constructor(props) {
+		super(props);
+
+		this.navBarRef = createRef();
+
+		this.onHandleScroll = this.onHandleScroll.bind(this);
+	}
+
+	componentDidMount() {
+		window.addEventListener('scroll', this.onHandleScroll);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.onHandleScroll);
+	}
+
+	onHandleScroll() {
+		if (window.scrollY > 20) {
+			this.navBarRef.current.classList.add('shadow');
+		} else {
+			this.navBarRef.current.classList.remove('shadow');
+		}
+	}
 	render() {
 		return (
-			<nav className="fixed inset-x-0 top-0 z-10 border-b border-slate-300 bg-white dark:border-slate-600 dark:bg-slate-800">
+			<nav
+				ref={this.navBarRef}
+				className="fixed inset-x-0 top-0 z-10 border-b border-slate-300 bg-white transition-[box-shadow] duration-200 ease-in-out dark:border-slate-600 dark:bg-slate-800"
+			>
 				<div className="mx-auto flex max-w-screen-xl items-center justify-between gap-6 py-4 px-6">
 					<div className="flex items-center space-x-2">
 						<span>

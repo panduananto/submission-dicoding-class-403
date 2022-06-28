@@ -15,7 +15,7 @@ export default class NoteList extends Component {
 			return title.includes(searchTerm.toLowerCase());
 		});
 
-		return result;
+		return result.reverse();
 	}
 
 	render() {
