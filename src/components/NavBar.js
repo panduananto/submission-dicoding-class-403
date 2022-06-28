@@ -1,11 +1,10 @@
-import React, { Component, createRef, Fragment } from 'react';
+import React, { Component, createRef } from 'react';
 
-import ReactTooltip from 'react-tooltip';
-import { IconContext } from 'react-icons';
 import { HiCheckCircle } from 'react-icons/hi';
-import { MdOutlineDarkMode, MdOutlineGridView, MdOutlineViewAgenda, MdOutlineWbSunny } from 'react-icons/md';
 
 import SearchInput from './SearchInput';
+import ToggleLayout from './ToggleLayout/ToggleLayout';
+import ToggleDarkTheme from './ToggleDarkTheme/ToggleDarkTheme';
 
 export default class NavBar extends Component {
 	constructor(props) {
@@ -50,80 +49,16 @@ export default class NavBar extends Component {
 							onSearchTermChangeHandler={this.props.onSearchTermChangeHandler}
 							onClearSearchTermHandler={this.props.onClearSearchTermHandler}
 						></SearchInput>
-						<IconContext.Provider
-							value={{
-								className: 'h-5 w-5 text-slate-900 transition-colors duration-200 ease-in-out dark:text-slate-400',
-							}}
-						>
-							<div className="flex items-center space-x-2">
-								<Fragment>
-									<button
-										type="button"
-										onClick={this.props.onChangeLayoutHandler}
-										className="group inline-flex items-center rounded-lg text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:hover:bg-slate-700"
-									>
-										{this.props.gridLayout ? (
-											<span data-tip="Grid view" data-for="gridView" className="p-2.5">
-												<MdOutlineGridView></MdOutlineGridView>
-												<ReactTooltip
-													id="gridView"
-													place="bottom"
-													effect="solid"
-													className="!bg-slate-700 !py-1 !px-2"
-													arrowColor="rgb(51, 65, 85)"
-													delayShow={200}
-												></ReactTooltip>
-											</span>
-										) : (
-											<span data-tip="List view" data-for="listView" className="p-2.5">
-												<MdOutlineViewAgenda></MdOutlineViewAgenda>
-												<ReactTooltip
-													id="listView"
-													place="bottom"
-													effect="solid"
-													className="!bg-slate-700 !py-1 !px-2"
-													arrowColor="rgb(51, 65, 85)"
-													delayShow={200}
-												></ReactTooltip>
-											</span>
-										)}
-									</button>
-								</Fragment>
-								<Fragment>
-									<button
-										type="button"
-										onClick={this.props.onChangeDarkThemeHandler}
-										className="group inline-flex items-center rounded-lg text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:hover:bg-slate-700"
-									>
-										{this.props.darkMode ? (
-											<div data-tip="Dark mode" data-for="darkMode" className="p-2.5">
-												<MdOutlineDarkMode></MdOutlineDarkMode>
-												<ReactTooltip
-													id="darkMode"
-													place="bottom"
-													effect="solid"
-													className="!bg-slate-700 !py-1 !px-2"
-													arrowColor="rgb(51, 65, 85)"
-													delayShow={200}
-												></ReactTooltip>
-											</div>
-										) : (
-											<div data-tip="Light mode" data-for="lightMode" className="p-2.5">
-												<MdOutlineWbSunny></MdOutlineWbSunny>
-												<ReactTooltip
-													id="lightMode"
-													place="bottom"
-													effect="solid"
-													className="!bg-slate-700 !py-1 !px-2"
-													arrowColor="rgb(51, 65, 85)"
-													delayShow={200}
-												></ReactTooltip>
-											</div>
-										)}
-									</button>
-								</Fragment>
-							</div>
-						</IconContext.Provider>
+						<div className="flex items-center space-x-2">
+							<ToggleLayout
+								gridLayout={this.props.gridLayout}
+								onChangeLayoutHandler={this.props.onChangeLayoutHandler}
+							></ToggleLayout>
+							<ToggleDarkTheme
+								darkMode={this.props.darkMode}
+								onChangeDarkThemeHandler={this.props.onChangeDarkThemeHandler}
+							></ToggleDarkTheme>
+						</div>
 					</div>
 				</div>
 			</nav>
