@@ -15,12 +15,18 @@ export default function ToggleLayout(props) {
 				<button
 					id="layout-toggle"
 					type="button"
+					aria-label="layout-toggle-button"
 					onClick={props.onChangeLayoutHandler}
 					className="group inline-flex items-center rounded-lg text-sm font-medium text-slate-900 transition-colors duration-200 ease-in-out hover:bg-slate-200 dark:hover:bg-slate-700"
 				>
 					{props.gridLayout ? (
-						<span data-tip="Grid view" data-for="layout-toggle-grid-tooltip" className="p-2.5">
-							<MdOutlineGridView id="layout-toggle-grid"></MdOutlineGridView>
+						<span
+							aria-label="layout-toggle-grid-icon"
+							data-tip="Grid view"
+							data-for="layout-toggle-grid-tooltip"
+							className="p-2.5"
+						>
+							<MdOutlineGridView></MdOutlineGridView>
 							<ReactTooltip
 								id="layout-toggle-grid-tooltip"
 								place="bottom"
@@ -31,8 +37,13 @@ export default function ToggleLayout(props) {
 							></ReactTooltip>
 						</span>
 					) : (
-						<span data-tip="List view" data-for="layout-toggle-list-tooltip" className="p-2.5">
-							<MdOutlineViewAgenda id="layout-toggle-list"></MdOutlineViewAgenda>
+						<span
+							aria-label="layout-toggle-list-icon"
+							data-tip="List view"
+							data-for="layout-toggle-list-tooltip"
+							className="p-2.5"
+						>
+							<MdOutlineViewAgenda></MdOutlineViewAgenda>
 							<ReactTooltip
 								id="layout-toggle-list-tooltip"
 								place="bottom"

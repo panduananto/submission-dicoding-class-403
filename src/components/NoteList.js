@@ -26,6 +26,7 @@ export default class NoteList extends Component {
 						<div
 							key={key}
 							data-label={key}
+							data-testid="note-list-container"
 							className={`${
 								this.props.notes[key].length !== 0
 									? this.props.gridLayout
