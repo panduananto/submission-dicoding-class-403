@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import NoteForm from './NoteForm';
-import NoteList from './NoteList';
+import NoteForm from './Note/NoteForm';
+import NoteList from './Note/NoteList';
 
 import { getInitialData, isStorageExist, saveDataToLocalStorage } from '../utils';
 

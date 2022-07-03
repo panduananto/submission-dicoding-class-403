@@ -1,13 +1,9 @@
 import React, { Component, Fragment } from 'react';
 
 import NoteItem from './NoteItem';
-import Tabs from './Tabs';
+import Tabs from '../Tabs/Tabs';
 
 export default class NoteList extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	getNote(searchTerm, key) {
 		const result = this.props.notes[key].filter((note) => {
 			const title = note.title.toLowerCase();
@@ -31,8 +27,8 @@ export default class NoteList extends Component {
 								this.props.notes[key].length !== 0
 									? this.props.gridLayout
 										? 'grid w-full grid-cols-12 gap-4'
-										: 'flex w-full max-w-[600px] flex-col space-y-4'
-									: 'w-full max-w-[600px]'
+										: 'mx-auto flex w-full max-w-[600px] flex-col space-y-4'
+									: 'mx-auto w-full max-w-[600px]'
 							}`}
 						>
 							{this.props.notes[key].length !== 0 ? (

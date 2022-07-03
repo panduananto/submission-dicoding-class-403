@@ -88,7 +88,12 @@ export default class NoteForm extends Component {
 
 	render() {
 		return (
-			<form ref={this.formRef} onSubmit={this.onSubmitEventHandler} className="mx-auto w-full max-w-[600px]">
+			<form
+				aria-label="note-form"
+				ref={this.formRef}
+				onSubmit={this.onSubmitEventHandler}
+				className="mx-auto w-full max-w-[600px]"
+			>
 				<div className="w-full overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm dark:border-slate-600 dark:bg-slate-700">
 					<div className="p-5">
 						{this.state.titleFieldVisible && (
@@ -99,7 +104,9 @@ export default class NoteForm extends Component {
 									</label>
 									<input
 										type="text"
+										name="title"
 										id="title"
+										aria-label="note-title"
 										autoComplete="off"
 										placeholder="Judul catatan"
 										value={this.state.title}
@@ -119,8 +126,10 @@ export default class NoteForm extends Component {
 							Catatan
 						</label>
 						<textarea
+							type="text"
 							name="body"
 							id="body"
+							aria-label="note-body"
 							cols="20"
 							rows="3"
 							placeholder="Tulis catatanmu di sini..."
@@ -131,7 +140,11 @@ export default class NoteForm extends Component {
 						></textarea>
 					</div>
 					<div className="bg-slate-50 px-5 py-3 text-right dark:bg-slate-800">
-						<button className="inline-flex justify-center rounded-lg bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm transition-colors duration-200 ease-in-out hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2 dark:focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-800">
+						<button
+							type="button"
+							aria-label="note-submit-button"
+							className="inline-flex justify-center rounded-lg bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm transition-colors duration-200 ease-in-out hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2 dark:focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-800"
+						>
 							Catat
 						</button>
 					</div>
