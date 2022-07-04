@@ -5,13 +5,16 @@ import Tabs from '../Tabs/Tabs';
 
 export default class NoteList extends Component {
 	getNote(searchTerm, key) {
+		if (!searchTerm) {
+			return [...this.props.notes[key]].reverse();
+		}
+
 		const result = this.props.notes[key].filter((note) => {
 			const title = note.title.toLowerCase();
-
 			return title.includes(searchTerm.toLowerCase());
 		});
 
-		return result.reverse();
+		return [...result].reverse();
 	}
 
 	render() {
